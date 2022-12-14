@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+}
+.sign-out{
+  width:15rem;
+  font-weight: 900;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  border-radius: 10%;
+  background: purple;
+  font-size: 20px;
+}
+#signInDiv{
+  margin:20rem auto 5rem auto;
+  width: 50%;
+  height: 20rem;
+  }
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

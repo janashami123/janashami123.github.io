@@ -1,0 +1,35 @@
+.header-content{
+    min-height:75vh;
+    background:linear-gradient(rgba(141,39,174,0.3),rgba(141,39,174,0.5)), url('../Images//image1.png') center/cover no-repeat;
+    flex-direction: column;
+    /* background-image:url('../../Images/image1.png') ; */
+}
+.header-title{
+    font-size:4.2rem ;
+    color:white
+}
+.header-text{
+    margin-top: -1.8rem;
+    margin-bottom: 2.8rem;
+    opacity:0.8;
+    max-width:770px;
+    color: white;
+}
+.search-form{
+    width:100%;
+    max-width:680px;
+    margin-top: 2rem;
+}
+.search-form-elem{
+    padding: 1.4rem 2.8rem;
+    border-radius:3.8rem;
+}
+.search-form-elem .form-control{
+    font-size: 2rem;
+    padding: 0.6rem;
+    width:92%;
+}
+
+.search-form-elem .form-control::placeholder{
+    opacity:0.9
+}
