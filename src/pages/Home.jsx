@@ -23,8 +23,8 @@ function Home({setUser,user}) {
     }
 
     const handleClick=(event)=>{
-     event.preventDefault();
-
+    //  event.preventDefault();
+    //  if(event.key === 'Enter'){
 
     axios.get('https://www.googleapis.com/books/v1/volumes?q=inauthor:'+author+'&filter=free-ebooks'+'&orderBy=newest'+'&key='+apiKey+'&maxResults=30')
     .then(data=>{

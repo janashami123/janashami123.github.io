@@ -195,7 +195,7 @@ color:purple;
 }
 @media screen and (max-width: 400px){
     
-    .popup .content{width:fit-content;
+    .popup .content{width:30rem;
     height:fit-content} 
 }
 

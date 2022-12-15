@@ -1,64 +1,75 @@
-body{
+body {
     position: relative;
 }
-.landing-title{
- color: white;
-text-align: center;
-}
-.sign-out{
-position: absolute;
-top:1%;
-left:90%;
-}
-.Landing{
-    margin-top: 20;
-    background:linear-gradient(rgba(141,39,174,0.3),rgba(141,39,174,0.5)), url('../Images//image1.png') center/cover no-repeat;
-}
-#signInDiv::before{content: 'FIND YOUR PERFECT BOOK         ';
-color:white;
-font-size: 32px;
-width: 20rem;
-align-self: center;
-margin-right: 2rem;
-}
-#signInDiv {
-    margin: 0 auto 0 auto;
-    width: 20%;
-    padding:63rem 0 15rem 0  ;
-    height: 153rem;
-}
-@media screen and (max-width: 800px){
-    .sign-out{
-        width: 8rem;
-        position:absolute;
-        top:2%;
-        left:5%;
-        font-size:15px;
-       }
+
+.landing-title {
+    color: white;
+    text-align: center;
 }
 
-@media screen and (max-width: 500px){
-    body{
+.sign-out {
+    position: absolute;
+    top: 1%;
+    left: 90%;
+}
+
+.Landing {
+    margin-top: 20;
+    background: linear-gradient(rgba(141, 39, 174, 0.3), rgba(141, 39, 174, 0.5)), url('../Images//image1.png') center/cover no-repeat;
+}
+
+#signInDiv::before {
+    content: 'FIND YOUR PERFECT BOOK         ';
+    color: white;
+    font-size: 30px;
+    width: 15rem;
+    /* margin-left: 4rem; */
+}
+
+#signInDiv {
+    margin: 0 auto 0 auto;
+    width: 30%;
+    align-items: center;
+    padding: 63rem 0 15rem 0;
+    height: 153rem;
+}
+
+@media screen and (max-width: 800px) {
+    .sign-out {
+        width: 8rem;
+        position: absolute;
+        top: 2%;
+        left: 5%;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body {
         position: relative;
     }
-    .sign-out{
+
+    .sign-out {
         width: 8rem;
-        position:absolute;
-        top:1%;
-        left:5%;
-        font-size:15px;
-       }
-       #signInDiv {
+        position: absolute;
+        top: 0.2%;
+        left: 5%;
+        font-size: 15px;
+    }
+
+    #signInDiv {
         margin: 0 auto 0 auto;
-        width: 80%;
-        padding:40rem 0 15rem 0  ;
+        width: 100%;
+        padding: 40rem 0 15rem 0;
         height: 153rem;
     }
-    #signInDiv::before{content: 'FIND YOUR PERFECT BOOK         ';
-        color:white;
+
+    #signInDiv::before {
+        content: 'FIND YOUR PERFECT BOOK         ';
+        color: white;
         font-size: 20px;
         width: 20rem;
         align-self: center;
         margin-left: 3rem;
-        }
+    }
 }

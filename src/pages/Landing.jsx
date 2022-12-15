@@ -25,7 +25,7 @@ function Landing() {
 
     google.accounts.id.renderButton(
     document.getElementById("signInDiv"),
-    {size:'large','width': 500,
+    {size:'large','width': 400,
     'height': 1500,
     'longtitle': true,
     'border-radius': 5,
