@@ -13,7 +13,7 @@ function Home({setUser,user}) {
   const[loading,setLoading]=useState(false)
   const[result,setResult]=useState([]);
   const[currentBook,setCurrentBooks]=useState(1)
-  const [booksPerPage,setBooksPerPage]=useState(5)
+  const [booksPerPage,setBooksPerPage]=useState(8)
   const[apiKey,setApiKey]=useState('AIzaSyATOdU1Y9RAMtOe5InIMUMEcUM1F1xVWuM')
 
   //paginate change page
