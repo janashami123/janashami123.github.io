@@ -20,6 +20,10 @@
     max-width:680px;
     margin-top: 2rem;
 }
+.form-control:onclick {
+    border: none !important;
+  }
+  
 .search-form-elem{
     padding: 1.4rem 2.8rem;
     border-radius:3.8rem;

@@ -1,8 +1,9 @@
 .App {
   text-align: center;
 }
-.sign-out{
-  width:15rem;
+
+.sign-out {
+  width: 15rem;
   font-weight: 900;
   padding: 10px 10px 10px 10px;
   color: white;
@@ -10,11 +11,17 @@
   background: purple;
   font-size: 20px;
 }
-#signInDiv{
-  margin:20rem auto 5rem auto;
+
+.form-control {
+  border: none !important;
+}
+
+#signInDiv {
+  margin: 20rem auto 5rem auto;
   width: 50%;
   height: 20rem;
-  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -45,6 +52,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
