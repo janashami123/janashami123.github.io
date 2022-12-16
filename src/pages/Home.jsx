@@ -16,6 +16,7 @@ function Home({setUser,user}) {
 
   const handleChange=(event)=>{
     setAuthor(event.target.value);
+    handleClick();
     }
     function handleSignOut(event){
       setUser({});
@@ -49,7 +50,7 @@ function Home({setUser,user}) {
        <div className='search-form'>
         <div className='search-form-elem flex elx-sb bg-white'>
             <input onChange={handleChange} type='text' className='form-control' placeholder='Search for author..'/>
-            <button onClick={handleClick} type='submit' className='flex flex-c'>
+            <button onClick={handleClick} className='flex flex-c'>
                 <FaSearch className='text-purple' size={32}/>
             </button>
         </div>
