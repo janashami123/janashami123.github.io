@@ -15,7 +15,9 @@
 .form-control {
   border: none !important;
 }
-
+.search-form-elem:onclick{
+  border: none !important;
+}
 #signInDiv {
   margin: 20rem auto 5rem auto;
   width: 50%;
@@ -56,4 +58,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form-control:focus {
+  box-shadow: unset !important;
+}
+.pagination{
+  justify-content: center;
+}
+.pagination li a {
+  font-size: 18px;
+  padding: 0px;
+  width: 55px;
+  height: 42px;
+  border-radius: 100% !important;
+  margin: 11px;
+  line-height: 43px;
+  color: purple;
 }
