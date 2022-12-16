@@ -80,7 +80,7 @@
 }
 .popup .close-btn{
  position:absolute; 
- right:0.5%;
+ right:1px;
  top:3px;
  width:30px;
  height:30px;
@@ -89,6 +89,7 @@ color:purple;
  font-weight: 600;
  line-height: 30px;
  text-align: center;
+ 
 
 
 }
@@ -200,6 +201,18 @@ color:purple;
     
     .popup .content{width:30rem;
     height:fit-content} 
+    .popup .close-btn {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        width: 30px;
+        height: 30px;
+        color: purple;
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: center;
+    }
 }
 
 
