@@ -46,9 +46,9 @@ const paginate =bookNumber=>setCurrentBooks(bookNumber);
 //  if(loading){
 //   return <h1>Loading ...</h1>
 //  }
-// useEffect(() => {
-//   handleClick();
-// }, []);
+useEffect(() => {
+  handleClick();
+}, []);
 
   return (
     
