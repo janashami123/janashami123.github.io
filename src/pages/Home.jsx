@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import '../components/Book/Book.css'
 import {FaSearch} from 'react-icons/fa';
@@ -31,7 +31,7 @@ const paginate =bookNumber=>setCurrentBooks(bookNumber);
 
     const handleClick=(event)=>{
   // setLoading(true)
-    axios.get('https://www.googleapis.com/books/v1/volumes?q=inauthor:'+author+'&filter=free-ebooks'+'&orderBy=newest'+'&key='+apiKey+'&maxResults=30')
+    axios.get('https://www.googleapis.com/books/v1/volumes?q=inauthor:'+author+'&filter=free-ebooks'+'&orderBy=newest'+'&key='+apiKey)
     .then(data=>{
     // setLoading(false)
       setResult(data.data.items)
@@ -46,7 +46,9 @@ const paginate =bookNumber=>setCurrentBooks(bookNumber);
 //  if(loading){
 //   return <h1>Loading ...</h1>
 //  }
-
+useEffect(() => {
+  handleClick();
+}, []);
 
   return (
     
@@ -87,7 +89,7 @@ const paginate =bookNumber=>setCurrentBooks(bookNumber);
                return <Book book={ele} key={index} />
                       
             })
-            :<h1>BOOK SEARCH RESULT</h1>
+            :<h1>No books for this author</h1>
           }
           
         </div>
