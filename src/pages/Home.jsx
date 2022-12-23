@@ -3,22 +3,21 @@ import axios from 'axios'
 import '../components/Book/Book.css'
 import {FaSearch} from 'react-icons/fa';
 import Book from '../components/Book/Book';
-import Pagination from '../components/Pagination';
-import { useNavigate } from 'react-router-dom';
+import Pagination from '../pagination/Pagination';
+
 
 import './Home.css'
 function Home({setUser,user}) {
  
   const [author,setAuthor]=useState('');
-  const[loading,setLoading]=useState(false)
   const[result,setResult]=useState([]);
-  const[currentBook,setCurrentBooks]=useState(1)
+  const[currentPage,setCurrentPage]=useState(1)
   const [booksPerPage,setBooksPerPage]=useState(8)
   const[apiKey,setApiKey]=useState('AIzaSyATOdU1Y9RAMtOe5InIMUMEcUM1F1xVWuM')
 
   //paginate change page
 
-const paginate =bookNumber=>setCurrentBooks(bookNumber);
+const paginate =bookNumber=>setCurrentPage(bookNumber);
 
   const handleChange=(event)=>{
     setAuthor(event.target.value);
@@ -30,22 +29,19 @@ const paginate =bookNumber=>setCurrentBooks(bookNumber);
     }
 
     const handleClick=(event)=>{
-  // setLoading(true)
     axios.get('https://www.googleapis.com/books/v1/volumes?q=inauthor:'+author+'&filter=free-ebooks'+'&orderBy=newest'+'&key='+apiKey+'&maxResults=40')
     .then(data=>{
-    // setLoading(false)
       setResult(data.data.items)
     })
     }
+  
     
- const indexOfLastBook = currentBook * booksPerPage;
+  // Get current books  
+ const indexOfLastBook = currentPage * booksPerPage;
  const indexOfFirstBook = indexOfLastBook - booksPerPage;
  const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook)
  
 
-//  if(loading){
-//   return <h1>Loading ...</h1>
-//  }
 useEffect(() => {
   handleClick();
 }, []);

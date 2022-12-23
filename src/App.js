@@ -19,15 +19,6 @@ function App() {
 </BrowserRouter>
 
 
-
-
-
-
-
-   
-
-  
-
   );
 
 
