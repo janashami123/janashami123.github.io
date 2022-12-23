@@ -17,7 +17,7 @@ function Home({setUser,user}) {
 
   //paginate change page
 
-const paginate =bookNumber=>setCurrentPage(bookNumber);
+const paginate =pageNumber=>setCurrentPage(pageNumber);
 
   const handleChange=(event)=>{
     setAuthor(event.target.value);
