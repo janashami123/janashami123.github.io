@@ -1,48 +1,39 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "../components/Book/Book.css";
 import { FaSearch } from "react-icons/fa";
 import Book from "../components/Book/Book";
 import Pagination from "../pagination/Pagination";
-
+import  axiosRequest  from '../API/api';
 import "./Home.css";
+
 function Home({ setUser, user }) {
   const [author, setAuthor] = useState("");
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage, setBooksPerPage] = useState(8);
-  const [apiKey, setApiKey] = useState(
-    "AIzaSyATOdU1Y9RAMtOe5InIMUMEcUM1F1xVWuM"
-  );
+  const [booksPerPage] = useState(8);
 
   //paginate change page
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleChange = (event) => {
-    setAuthor(event.target.value);
-    handleClick();
-  };
-  function handleSignOut(event) {
+  const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
-  }
-
-  const handleClick = (event) => {
-    axios
-      .get(
-        "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
-          author +
-          "&filter=free-ebooks" +
-          "&orderBy=newest" +
-          "&key=" +
-          apiKey +
-          "&maxResults=40"
-      )
-      .then((data) => {
-        setResult(data.data.items);
-      });
   };
+  const handleChange = (e) => {
+    setAuthor(e.target.value);
+    handleClick();
+  };
+  const handleClick = () => {
+    setResult(axiosRequest(author));
+  };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      handleClick();
+    }, 3000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [author]);
 
   // Get current books
   const indexOfLastBook = currentPage * booksPerPage;
