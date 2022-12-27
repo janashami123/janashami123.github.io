@@ -3,7 +3,7 @@ import "../components/Book/Book.css";
 import { FaSearch } from "react-icons/fa";
 import Book from "../components/Book/Book";
 import Pagination from "../pagination/Pagination";
-import  axiosRequest  from '../API/api';
+import  fetchBooks  from '../API/api';
 import "./Home.css";
 
 function Home({ setUser, user }) {
@@ -24,7 +24,7 @@ function Home({ setUser, user }) {
     handleClick();
   };
   const handleClick = () => {
-    setResult(axiosRequest(author));
+    setResult(fetchBooks(author));
   };
 
   useEffect(() => {
