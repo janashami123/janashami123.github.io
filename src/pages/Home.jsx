@@ -12,7 +12,7 @@ function Home({ setUser, user }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(8);
   const [apiKey, setApiKey] = useState(
-    "AIzaSyATOdU1Y9RAMtOe5InIMUMEcUM1F1xVWuM"
+    "AIzaSyCEYFZLGxnzKUIlqoUN_ebdWd5NjJItZmY"
   );
 
   //paginate change page
@@ -28,8 +28,8 @@ function Home({ setUser, user }) {
     window.location.reload();
   }
 
-  const handleClick = (event) => {
-    axios
+  const handleClick = () => {
+      axios
       .get(
         "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
           author +
