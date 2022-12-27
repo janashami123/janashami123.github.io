@@ -12,8 +12,13 @@ import axios from "axios";
       )
   
       .then((data) => {
-        return data.data.items;
-   
+        if(data.data.hasOwnProperty('items')){
+          return data.data.items
+          }
+          if(data.hasOwnProperty('data')){
+          return data.data
+          }  
       })}
-
+     
+    
 export default axiosRequest;    
