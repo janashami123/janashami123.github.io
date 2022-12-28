@@ -23,15 +23,17 @@ function Home({ setUser, user }) {
     setAuthor(e.target.value);
     handleClick();
   };
+  
   const handleClick = () => {
-   setResult(AxiosRequest(author));
-   
+   AxiosRequest(author,function(result){
+   setResult(result)
+   });
   };
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       handleClick();
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(delayDebounceFn);
   }, [author]);

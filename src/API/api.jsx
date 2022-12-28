@@ -1,6 +1,6 @@
 import axios from "axios";
 
- const axiosRequest=(params) =>{
+ const axiosRequest=(params,callback) =>{
     axios
       .get(
         "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
@@ -12,12 +12,7 @@ import axios from "axios";
       )
   
       .then((data) => {
-        if(data.data.hasOwnProperty('items')){
-          return data.data.items
-          }
-          if(data.hasOwnProperty('data')){
-          return data.data
-          }  
+          callback(data.data.items)
       })}
      
     
