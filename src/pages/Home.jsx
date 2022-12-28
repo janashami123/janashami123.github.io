@@ -21,7 +21,7 @@ function Home({ setUser, user }) {
 
   const handleChange = (event) => {
     setAuthor(event.target.value);
-    handleClick();
+    // handleClick();
   };
   function handleSignOut(event) {
     setUser({});
@@ -43,6 +43,16 @@ function Home({ setUser, user }) {
         setResult(data.data.items);
       });
   };
+
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      handleClick();
+    }, 3000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [author]);
+
 
   // Get current books
   const indexOfLastBook = currentPage * booksPerPage;
