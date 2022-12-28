@@ -11,9 +11,14 @@ function Home({ setUser, user }) {
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(8);
+ // Get current books
+ const indexOfLastBook = currentPage * booksPerPage;
+ let indexOfFirstBook = indexOfLastBook - booksPerPage;
+ const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
 
   //paginate change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  indexOfFirstBook=indexOfFirstBook+1;
 
   const handleSignOut = (event) => {
     setUser({});
@@ -21,7 +26,6 @@ function Home({ setUser, user }) {
   };
   const handleChange = (e) => {
     setAuthor(e.target.value);
-    handleClick();
   };
   
   const handleClick = () => {
@@ -30,19 +34,19 @@ function Home({ setUser, user }) {
    });
   };
 
+
+
+
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       handleClick();
-    }, 5000);
+    }, 1500);
 
     return () => clearTimeout(delayDebounceFn);
   }, [author]);
 
-  // Get current books
-  const indexOfLastBook = currentPage * booksPerPage;
-  const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
-
+ 
   useEffect(() => {
     handleClick();
   }, []);
