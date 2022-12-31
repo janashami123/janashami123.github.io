@@ -11,7 +11,7 @@ function Home({ setUser, user }) {
   const [startIndex, setstartIndex] = useState(0);
   const [result, setResult] = useState([]);
   const[totalBooks,setTotalBooks]=useState([]);
-  
+  const [currentPage, setcurrentPage] = useState(1);
  
   //paginate change page
   const paginate = (pageNumber) => {
@@ -20,6 +20,7 @@ function Home({ setUser, user }) {
     console.log(pageNumber)
     console.log(startIndex)
   }
+
   const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
