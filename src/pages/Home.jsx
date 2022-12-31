@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import "../components/Book/Book.css";
 import { FaSearch } from "react-icons/fa";
 import Book from "../components/Book/Book";
@@ -8,45 +8,44 @@ import "./Home.css";
 
 function Home({ setUser, user }) {
   const [author, setAuthor] = useState("");
+  const [startIndex, setstartIndex] = useState(0);
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(8);
- // Get current books
- const indexOfLastBook = currentPage * booksPerPage;
- let indexOfFirstBook = indexOfLastBook - booksPerPage;
- const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
+  const[totalBooks,setTotalBooks]=useState([]);
 
   //paginate change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
-  indexOfFirstBook=indexOfFirstBook+1;
+  const paginate = (pageNumber) => {setCurrentPage(pageNumber);
+    setstartIndex((pageNumber-1)*20);
+    console.log(startIndex)
+    handleClick()
+}
 
   const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
   };
+
   const handleChange = (e) => {
     setAuthor(e.target.value);
   };
   
-  const handleClick = () => {
-   AxiosRequest(author,function(result){
-   setResult(result)
+  const handleClick = () => { 
+   AxiosRequest(author,startIndex,function(result){
+   setResult(result.items);
+  
+   setTotalBooks(result.totalItems);
+   console.log(totalBooks)
    });
   };
-
-
-
-
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       handleClick();
+      setstartIndex(0)
     }, 1500);
-
     return () => clearTimeout(delayDebounceFn);
   }, [author]);
 
- 
   useEffect(() => {
     handleClick();
   }, []);
@@ -94,8 +93,8 @@ function Home({ setUser, user }) {
         <div className="container">
           <div className="section-title"></div>
           <div className="booklist-content grid">
-            {currentBooks && currentBooks.length > 0 ? (
-              currentBooks.map((ele, index) => {
+            {result && result.length > 0 ? (
+              result.map((ele, index) => {
                 return <Book book={ele} key={index} />;
               })
             ) : (
@@ -104,8 +103,8 @@ function Home({ setUser, user }) {
           </div>
         </div>
         <Pagination
-          booksPerPage={booksPerPage}
-          totalBooks={result?.length}
+          // booksPerPage={booksPerPage}
+          totalBooks={totalBooks}
           paginate={paginate}
         />
       </section>

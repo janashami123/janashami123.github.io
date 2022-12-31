@@ -1,8 +1,8 @@
 import React from "react";
 import "./Pagination.css";
-function Pagination({ booksPerPage, totalBooks, paginate }) {
+function Pagination({ totalBooks, paginate }) {
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalBooks / booksPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalBooks / 20); i++) {
     pageNumbers.push(i);
   }
   return (

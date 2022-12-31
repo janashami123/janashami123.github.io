@@ -1,6 +1,6 @@
 import axios from "axios";
 
- const axiosRequest=(params,callback) =>{
+ const axiosRequest=(params,params1,callback) =>{
     axios
       .get(
         "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
@@ -8,11 +8,11 @@ import axios from "axios";
           "&filter=free-ebooks" +
           "&orderBy=newest" +
           "&key=AIzaSyC0UMQMXdcJ92ckPylaYYYHC-G-oukDxeo"+
-          "&maxResults=40"
+          `&startIndex=${params1}`+'&maxResults=20'
       )
   
       .then((data) => {
-          callback(data.data.items)
+          callback(data.data)
       })}
      
     
