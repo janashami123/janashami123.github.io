@@ -11,16 +11,19 @@ function Home({ setUser, user }) {
   const [startIndex, setstartIndex] = useState(0);
   const [result, setResult] = useState([]);
   const[totalBooks,setTotalBooks]=useState([]);
-  const [currentPage, setcurrentPage] = useState(1);
- 
+  const [pageNumber, setpageNumber] = useState(1);
+  const indexOfLastBook = pageNumber * 20;
+  const indexOfFirstBook = indexOfLastBook - 20;
+  const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
+
   //paginate change page
   const paginate = (pageNumber) => {
-    pageNumber=pageNumber;
-    setstartIndex((pageNumber-1)*20);
+    pageNumber=pageNumber
+    // setstartIndex((pageNumber-1)*20);
     console.log(pageNumber)
-    console.log(startIndex)
+    // console.log(startIndex)
+    handleClick()
   }
-
   const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
@@ -92,8 +95,8 @@ function Home({ setUser, user }) {
         <div className="container">
           <div className="section-title"></div>
           <div className="booklist-content grid">
-            {result && result.length > 0 ? (
-              result.map((ele, index) => {
+            {currentBooks && currentBooks.length > 0 ? (
+              currentBooks.map((ele, index) => {
                 return <Book book={ele} key={index} />;
               })
             ) : (
