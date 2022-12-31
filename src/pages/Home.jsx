@@ -8,16 +8,20 @@ import "./Home.css";
 
 function Home({ setUser, user }) {
   const [author, setAuthor] = useState("");
-  const [startIndex, setstartIndex] = useState(0);
+  const [startIndex, setstartIndex] = useState(1);
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const[totalBooks,setTotalBooks]=useState([]);
 
   //paginate change page
-  const paginate = (pageNumber) => {setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    pageNumber=pageNumber;
+    setCurrentPage(pageNumber);
     setstartIndex((pageNumber-1)*20);
-    console.log(startIndex)
-    handleClick()
+    pageNumber=pageNumber
+ 
+    console.log(pageNumber)
+    // handleClick()
 }
 
   const handleSignOut = (event) => {
@@ -34,7 +38,6 @@ function Home({ setUser, user }) {
    setResult(result.items);
   
    setTotalBooks(result.totalItems);
-   console.log(totalBooks)
    });
   };
 
