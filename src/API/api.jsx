@@ -8,7 +8,7 @@ import axios from "axios";
           "&filter=free-ebooks" +
           "&orderBy=newest" +
           "&key=AIzaSyC0UMQMXdcJ92ckPylaYYYHC-G-oukDxeo"+
-          '&maxResults=20'
+          `&startIndex=${params1}`+'&maxResults=20'
       )
   
       .then((data) => {

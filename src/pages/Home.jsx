@@ -12,18 +12,20 @@ function Home({ setUser, user }) {
   const [result, setResult] = useState([]);
   const[totalBooks,setTotalBooks]=useState([]);
   const [pageNumber, setpageNumber] = useState(1);
-  const indexOfLastBook = pageNumber * 20;
-  const indexOfFirstBook = indexOfLastBook - 20;
-  const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
-
+  const [booksPerPage, setbooksPerPage] = useState(20);
+ 
   //paginate change page
   const paginate = (pageNumber) => {
     pageNumber=pageNumber
-    // setstartIndex((pageNumber-1)*20);
+    setstartIndex((pageNumber-1)*20);
     console.log(pageNumber)
     // console.log(startIndex)
     handleClick()
   }
+  const indexOfLastBook = pageNumber * 20;
+  const indexOfFirstBook = indexOfLastBook - 20;
+  const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
+
   const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
@@ -105,7 +107,7 @@ function Home({ setUser, user }) {
           </div>
         </div>
         <Pagination
-          // booksPerPage={booksPerPage}
+          booksPerPage={booksPerPage}
           totalBooks={totalBooks}
           paginate={paginate}
         />
