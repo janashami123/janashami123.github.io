@@ -8,22 +8,18 @@ import "./Home.css";
 
 function Home({ setUser, user }) {
   const [author, setAuthor] = useState("");
-  const [startIndex, setstartIndex] = useState(1);
+  const [startIndex, setstartIndex] = useState(0);
   const [result, setResult] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const[totalBooks,setTotalBooks]=useState([]);
-
+  
+ 
   //paginate change page
   const paginate = (pageNumber) => {
     pageNumber=pageNumber;
-    setCurrentPage(pageNumber);
     setstartIndex((pageNumber-1)*20);
-    pageNumber=pageNumber
- 
     console.log(pageNumber)
-    // handleClick()
-}
-
+    console.log(startIndex)
+  }
   const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
@@ -36,7 +32,6 @@ function Home({ setUser, user }) {
   const handleClick = () => { 
    AxiosRequest(author,startIndex,function(result){
    setResult(result.items);
-  
    setTotalBooks(result.totalItems);
    });
   };
