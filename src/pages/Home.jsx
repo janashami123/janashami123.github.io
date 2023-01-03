@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import "../components/Book/Book.css";
 import { FaSearch } from "react-icons/fa";
 import Book from "../components/Book/Book";
-import Pagination from "../pagination/Pagination";
-import  AxiosRequest  from '../API/api';
+import { styled } from "@mui/system";
+import AxiosRequest from "../API/api";
 import "./Home.css";
-
+import { Pagination } from "@mui/material";
 function Home({ setUser, user }) {
   const [author, setAuthor] = useState("");
   const [startIndex, setstartIndex] = useState(0);
   const [result, setResult] = useState([]);
-  const[totalBooks,setTotalBooks]=useState([]);
-  const [currentPage, setcurrentPage] = useState(1);
- 
-  //paginate change page
-  const paginate = (pageNumber) => {
-    pageNumber=pageNumber;
-    setstartIndex((pageNumber-1)*20);
-    console.log(pageNumber)
-    console.log(startIndex)
-  }
+  const [totalBooks, setTotalBooks] = useState([]);
+  const [pageNumber, setpageNumber] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(totalBooks / 20);
+
+  const paginate = (event, value) => {
+    setpageNumber(value);
+    setstartIndex((value - 1) * 20);
+    handleClick()
+  };
 
   const handleSignOut = (event) => {
     setUser({});
@@ -29,18 +30,23 @@ function Home({ setUser, user }) {
   const handleChange = (e) => {
     setAuthor(e.target.value);
   };
-  
-  const handleClick = () => { 
-   AxiosRequest(author,startIndex,function(result){
-   setResult(result.items);
-   setTotalBooks(result.totalItems);
-   });
+
+  const handleClick = () => {
+    AxiosRequest(author, startIndex, function (result) {
+      setResult(result.items);
+      console.log(startIndex);
+      setTotalBooks(result.totalItems);
+    });
   };
+
+  useEffect(() => {
+    handleClick()
+  }, [startIndex]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       handleClick();
-      setstartIndex(0)
+      setstartIndex(0);
     }, 1500);
     return () => clearTimeout(delayDebounceFn);
   }, [author]);
@@ -102,9 +108,19 @@ function Home({ setUser, user }) {
           </div>
         </div>
         <Pagination
-          // booksPerPage={booksPerPage}
-          totalBooks={totalBooks}
-          paginate={paginate}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "5rem",
+            mt: 5,
+            h5:"h5"
+          }}
+          count={totalPages}
+          page={pageNumber}
+          onChange={paginate}
+          color="secondary"
+          showFirstButton
+          showLastButton
         />
       </section>
       <div></div>
