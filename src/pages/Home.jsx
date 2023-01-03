@@ -1,63 +1,55 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "../components/Book/Book.css";
 import { FaSearch } from "react-icons/fa";
 import Book from "../components/Book/Book";
-import Pagination from "../pagination/Pagination";
-
+import { styled } from "@mui/system";
+import AxiosRequest from "../API/api";
 import "./Home.css";
+import { Pagination } from "@mui/material";
 function Home({ setUser, user }) {
   const [author, setAuthor] = useState("");
+  const [startIndex, setstartIndex] = useState(0);
   const [result, setResult] = useState([]);
+  const [totalBooks, setTotalBooks] = useState([]);
+  const [pageNumber, setpageNumber] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage, setBooksPerPage] = useState(8);
-  const [apiKey, setApiKey] = useState(
-    "AIzaSyCEYFZLGxnzKUIlqoUN_ebdWd5NjJItZmY"
-  );
 
-  //paginate change page
+  const totalPages = Math.ceil(totalBooks / 20);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleChange = (event) => {
-    setAuthor(event.target.value);
-    // handleClick();
+  const paginate = (event, value) => {
+    setpageNumber(value);
+    setstartIndex((value - 1) * 20);
+    handleClick()
   };
-  function handleSignOut(event) {
+
+  const handleSignOut = (event) => {
     setUser({});
     window.location.reload();
-  }
-
-  const handleClick = () => {
-      axios
-      .get(
-        "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
-          author +
-          "&filter=free-ebooks" +
-          "&orderBy=newest" +
-          "&key=" +
-          apiKey +
-          "&maxResults=40"
-      )
-      .then((data) => {
-        setResult(data.data.items);
-      });
   };
 
+  const handleChange = (e) => {
+    setAuthor(e.target.value);
+  };
+
+  const handleClick = () => {
+    AxiosRequest(author, startIndex, function (result) {
+      setResult(result.items);
+      console.log(startIndex);
+      setTotalBooks(result.totalItems);
+    });
+  };
+
+  useEffect(() => {
+    handleClick()
+  }, [startIndex]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       handleClick();
-    }, 3000);
-
+      setstartIndex(0);
+    }, 1500);
     return () => clearTimeout(delayDebounceFn);
   }, [author]);
-
-
-  // Get current books
-  const indexOfLastBook = currentPage * booksPerPage;
-  const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = result?.slice(indexOfFirstBook, indexOfLastBook);
 
   useEffect(() => {
     handleClick();
@@ -106,8 +98,8 @@ function Home({ setUser, user }) {
         <div className="container">
           <div className="section-title"></div>
           <div className="booklist-content grid">
-            {currentBooks && currentBooks.length > 0 ? (
-              currentBooks.map((ele, index) => {
+            {result && result.length > 0 ? (
+              result.map((ele, index) => {
                 return <Book book={ele} key={index} />;
               })
             ) : (
@@ -116,9 +108,19 @@ function Home({ setUser, user }) {
           </div>
         </div>
         <Pagination
-          booksPerPage={booksPerPage}
-          totalBooks={result?.length}
-          paginate={paginate}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "5rem",
+            mt: 5,
+            h5:"h5"
+          }}
+          count={totalPages}
+          page={pageNumber}
+          onChange={paginate}
+          color="secondary"
+          showFirstButton
+          showLastButton
         />
       </section>
       <div></div>

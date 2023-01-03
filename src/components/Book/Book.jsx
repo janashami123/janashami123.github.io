@@ -19,7 +19,7 @@ function Book({ book }) {
     <div>
       <div className="book-item flex flex-column flex-sb">
         <div className="book-item-img">
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt="book" />
+          <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt="book" />
         </div>
 
         <div className="book-item-info text-center">

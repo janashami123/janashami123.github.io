@@ -15,6 +15,9 @@
     max-width:770px;
     color: white;
 }
+.css-19micn4-MuiButtonBase-root-MuiPaginationItem-root {
+    font-size: 1rem!important;
+}
 .search-form{
     width:100%;
     max-width:680px;
