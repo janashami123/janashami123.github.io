@@ -34,7 +34,7 @@ function Home({ setUser, user }) {
   const handleClick = () => {
     AxiosRequest(author, startIndex, function (result) {
       setResult(result.items);
-      console.log(startIndex);
+      // console.log(startIndex);
       setTotalBooks(result.totalItems);
     });
   };

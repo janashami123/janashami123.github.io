@@ -9,7 +9,7 @@ function Landing() {
   function handleCallbackResponse(response) {
     console.log("./pages/HomeEncoded JWT ID token:" + response.credential);
     var userObject = jwt_decode(response.credential);
-    console.timeLog(userObject);
+    // console.timeLog(userObject);
     setUser(userObject);
     document.getElementById("signInDiv").hidden = true;
   }
@@ -34,7 +34,7 @@ function Landing() {
   function isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
-  console.log("user", isEmpty(user));
+  // console.log("user", isEmpty(user));
   return (
     <div className="Landing">
       {!isEmpty(user) ? (
