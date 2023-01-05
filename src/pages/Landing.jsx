@@ -18,18 +18,16 @@ function Landing() {
     console.log(jwt_decode(response.credential));
     setUser(userObject);
     setDate(new Date(user.exp));
-    console.log(new Date(user.exp));
-    setExp(date - Date.now());
-    console.log(date - Date.now());
-
+    setExp(Date.now()-date);
+   
     document.getElementById("signInDiv").hidden = true;
   }
 
-  //authentication when the token expires
+  //authentication when the token expires // not working because there is a problem in the expiray date (1970)
 
   // setTimeout(() => {
   //  handleSignOut()
-  // }, 5000);
+  // }, exp);
 
   useEffect(() => {
     /*global google*/

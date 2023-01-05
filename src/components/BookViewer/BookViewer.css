@@ -1,9 +1,15 @@
 
 #viewerCanvas{  
     margin-left:150px;
-    width: 100%;  
+    width: 100vw; 
     height: 800px;
+    background-color:#F8F9FA
  }
  .BackButton{
     font-size: 25px;
+    margin-left: 2rem;
+    margin-top: 2rem;
+ }
+ .Cont{
+   background-color:#F8F9FA
  }

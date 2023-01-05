@@ -2,7 +2,6 @@
     min-height:75vh;
     background:linear-gradient(rgba(141,39,174,0.3),rgba(141,39,174,0.5)), url('../Images//image1.png') center/cover no-repeat;
     flex-direction: column;
-    /* background-image:url('../../Images/image1.png') ; */
 }
 .header-title{
     font-size:4.2rem ;

@@ -1,15 +1,12 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./Book.css";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Star from "../Reviews/Star";
 import { Link } from "react-router-dom";
-import { BookResultContext } from "../../Contexts/BookResultContext"
+import { BookResultContext } from "../../Contexts/BookResultContext";
+
 function Book({ book }) {
-
-
-  const [show, setShow] = useState(false);
-  const{setResult,result}=useContext(BookResultContext)  
-  console.log(result)
+  const { setResult, result } = useContext(BookResultContext);
   return (
     <div>
       <div className="book-item flex flex-column flex-sb">
@@ -18,7 +15,6 @@ function Book({ book }) {
         </div>
 
         <div className="book-item-info text-center">
-         
           <div className="book-item-info-item title fw-7 fs-18">
             <span>{book.volumeInfo.title}</span>
           </div>
@@ -40,15 +36,11 @@ function Book({ book }) {
           <div className="stars">
             <Star stars={book.volumeInfo.averageRating} />
           </div>
-          <Link to='/BookViewer' state={{id:book.id}}>
-          <button className="view-more">
-            View Details
-          </button>
+          <Link to="/BookViewer" state={{ id: book.id }}>
+            <button className="view-more">View Details</button>
           </Link>
         </div>
       </div>
-
-     
     </div>
   );
 }
