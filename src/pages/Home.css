@@ -8,6 +8,11 @@
     font-size:4.2rem ;
     color:white
 }
+.NoResult{
+        margin: auto;
+        padding-top: 5rem;
+        width: 100%;
+}
 .header-text{
     margin-top: -1.8rem;
     margin-bottom: 2.8rem;

@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import "../components/Book/Book.css";
 import { FaSearch } from "react-icons/fa";
 import Book from "../components/Book/Book";
-import { styled } from "@mui/system";
 import AxiosRequest from "../API/api";
 import "./Home.css";
+import "../App.css";
+import { BookResultContext } from '../Contexts/BookResultContext'
 import { Pagination } from "@mui/material";
-function Home({ setUser, user }) {
-  const [author, setAuthor] = useState("");
+function Home() {
+  // const [author, setAuthor] = useState("");
   const [startIndex, setstartIndex] = useState(0);
-  const [result, setResult] = useState([]);
   const [totalBooks, setTotalBooks] = useState([]);
   const [pageNumber, setpageNumber] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const{setResult,result,author,setAuthor}=useContext(BookResultContext)  
+  console.log(result)
 
   const totalPages = Math.ceil(totalBooks / 20);
 
@@ -22,10 +24,6 @@ function Home({ setUser, user }) {
     handleClick()
   };
 
-  const handleSignOut = (event) => {
-    setUser({});
-    window.location.reload();
-  };
 
   const handleChange = (e) => {
     setAuthor(e.target.value);
@@ -34,14 +32,16 @@ function Home({ setUser, user }) {
   const handleClick = () => {
     AxiosRequest(author, startIndex, function (result) {
       setResult(result.items);
-      // console.log(startIndex);
+      console.log(result);
+      console.log(result.items);
       setTotalBooks(result.totalItems);
+    
     });
   };
 
-  useEffect(() => {
-    handleClick()
-  }, [startIndex]);
+  // useEffect(() => {
+  //   handleClick()
+  // }, [startIndex]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -51,17 +51,13 @@ function Home({ setUser, user }) {
     return () => clearTimeout(delayDebounceFn);
   }, [author]);
 
-  useEffect(() => {
-    handleClick();
-  }, []);
+  // useEffect(() => {
+  //   handleClick();
+  // }, []);
 
   return (
     <div>
-      {Object.keys(user).length != 0 && (
-        <button className="sign-out" onClick={(e) => handleSignOut(e)}>
-          Sign out
-        </button>
-      )}
+   
       <div className="holder">
         <header>
           <div className="header-content flex flex-c text-center text-white">
@@ -70,9 +66,7 @@ function Home({ setUser, user }) {
             </h2>
             <br />
             <p className="header-text fs-18 fw-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              eos placeat nihil accusamus quidem, nostrum quia? Similique,
-              saepe? Molestias culpa nisi eius mollitia eligendi fuga!
+            
             </p>
             <div className="search-form">
               <div className="container">
@@ -81,6 +75,7 @@ function Home({ setUser, user }) {
                     <input
                       onChange={handleChange}
                       type="text"
+                      defaultValue={author}
                       className="form-control"
                       placeholder="Search for author.."
                     />
@@ -103,7 +98,7 @@ function Home({ setUser, user }) {
                 return <Book book={ele} key={index} />;
               })
             ) : (
-              <h1>BOOK SEARCH RESULT</h1>
+              <h1 className="NoResult">There are no books with this author name</h1>
             )}
           </div>
         </div>

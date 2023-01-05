@@ -6,18 +6,34 @@ import Home from ".././pages/Home";
 
 function Landing() {
   const [user, setUser] = useState({});
+  const [date, setDate] = useState("");
+  const [exp, setExp] = useState("");
+  const handleSignOut = (event) => {
+    setUser({});
+    window.location.reload();
+  };
   function handleCallbackResponse(response) {
     console.log("./pages/HomeEncoded JWT ID token:" + response.credential);
     var userObject = jwt_decode(response.credential);
-    // console.timeLog(userObject);
+    console.log(jwt_decode(response.credential));
     setUser(userObject);
+    setDate(new Date(user.exp));
+    console.log(new Date(user.exp));
+    setExp(date - Date.now());
+    console.log(date - Date.now());
+
     document.getElementById("signInDiv").hidden = true;
   }
 
+  //authentication when the token expires
+
+  // setTimeout(() => {
+  //  handleSignOut()
+  // }, 5000);
+
   useEffect(() => {
-    
     /*global google*/
-    google.accounts.id.initialize({
+    google?.accounts?.id?.initialize({
       client_id:
         "786947683543-dmr2j7o6m6otdr90t22c1jdrn15tqdsb.apps.googleusercontent.com",
       callback: handleCallbackResponse,
@@ -34,14 +50,16 @@ function Landing() {
   function isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
-  // console.log("user", isEmpty(user));
+
   return (
     <div className="Landing">
-      {!isEmpty(user) ? (
-        <Home user={user} setUser={setUser} />
-      ) : (
-        <div id="signInDiv"></div>
+      <div id="signInDiv"></div>
+      {Object.keys(user).length != 0 && (
+        <button className="sign-out" onClick={(e) => handleSignOut(e)}>
+          Sign out
+        </button>
       )}
+      {!isEmpty(user) && <Home user={user} setUser={setUser} />}
     </div>
   );
 }
